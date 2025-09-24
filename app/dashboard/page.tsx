@@ -16,6 +16,11 @@ function DashboardPageContent() {
   const router = useRouter()
   const { toast } = useToast()
 
+  // This component is wrapped in AuthRequiredRoute, so user should never be null
+  if (!user) {
+    return null
+  }
+
   const handleSignOut = async () => {
     await signOut()
     router.push("/")

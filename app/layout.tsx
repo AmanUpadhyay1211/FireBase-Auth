@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Firebase Auth App",
+  title: "FireAuth",
   description: "Modern authentication with Firebase, MongoDB, and JWT sessions",
     generator: 'v0.app'
 }

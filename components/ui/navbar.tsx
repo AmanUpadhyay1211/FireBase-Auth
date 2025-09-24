@@ -2,8 +2,9 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { useRouter } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
-import { Menu, X, Zap } from "lucide-react"
+import { Menu, X, Flame } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/ui/theme-toggle"
 import { useAuth } from "@/hooks/use-auth"
@@ -11,10 +12,12 @@ import { useAuth } from "@/hooks/use-auth"
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const { user, signOut } = useAuth()
+  const router = useRouter()
 
   const handleSignOut = async () => {
     await signOut()
     setIsOpen(false)
+    router.push("/")
   }
 
   return (
@@ -24,13 +27,13 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <motion.div
-              whileHover={{ rotate: 180 }}
+              whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.3 }}
-              className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center"
+              className="w-8 h-8 bg-gradient-to-br from-orange-400 to-orange-600 rounded-lg flex items-center justify-center"
             >
-              <Zap className="w-5 h-5 text-primary-foreground" />
+              <Flame className="w-5 h-5 text-white" />
             </motion.div>
-            <span className="font-bold text-xl">AuthApp</span>
+            <span className="font-bold text-xl bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">FireAuth</span>
           </Link>
 
           {/* Desktop Navigation */}

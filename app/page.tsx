@@ -14,8 +14,8 @@ function HomePageContent() {
           {/* Hero Section */}
           <div className="space-y-4 md:space-y-6">
             <h1 className="text-3xl md:text-4xl lg:text-6xl font-bold tracking-tight text-balance">
-              Modern Authentication
-              <span className="block text-primary">Made Simple</span>
+              FireAuth
+              <span className="block bg-gradient-to-r from-orange-500 to-orange-600 bg-clip-text text-transparent">Authentication Made Simple</span>
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty px-4">
               Experience seamless authentication with Firebase, MongoDB backup, and JWT sessions. Built with Next.js 15

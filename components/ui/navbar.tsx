@@ -38,11 +38,11 @@ export function Navbar() {
             <ThemeToggle />
             {user ? (
               <div className="flex items-center space-x-4">
-                <Link href="/about-me">
+                {/* <Link href="/about-me">
                   <Button variant="ghost" size="sm">
                     About Me
                   </Button>
-                </Link>
+                </Link> */}
                 <Button onClick={handleSignOut} variant="outline" size="sm">
                   Sign Out
                 </Button>
@@ -107,11 +107,11 @@ export function Navbar() {
               <div className="py-4 space-y-2">
                 {user ? (
                   <>
-                    <Link href="/about-me" onClick={() => setIsOpen(false)}>
+                    {/* <Link href="/about-me" onClick={() => setIsOpen(false)}>
                       <Button variant="ghost" className="w-full justify-start">
                         About Me
                       </Button>
-                    </Link>
+                    </Link> */}
                     <Button onClick={handleSignOut} variant="outline" className="w-full justify-start bg-transparent">
                       Sign Out
                     </Button>

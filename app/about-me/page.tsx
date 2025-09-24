@@ -7,34 +7,15 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Navbar } from "@/components/ui/navbar"
 import { useAuth } from "@/hooks/use-auth"
 import { useRouter } from "next/navigation"
+import { AuthRequiredRoute } from "@/components/auth/protected-route"
 
-export default function AboutMePage() {
-  const { user, signOut, loading } = useAuth()
+function AboutMePageContent() {
+  const { user, signOut } = useAuth()
   const router = useRouter()
 
   const handleSignOut = async () => {
     await signOut()
     router.push("/")
-  }
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-      </div>
-    )
-  }
-
-  if (!user) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <Card className="w-full max-w-md mx-4">
-          <CardContent className="pt-6 text-center">
-            <p className="text-muted-foreground">Please sign in to access this page.</p>
-          </CardContent>
-        </Card>
-      </div>
-    )
   }
 
   return (
@@ -194,5 +175,13 @@ export default function AboutMePage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function AboutMePage() {
+  return (
+    <AuthRequiredRoute>
+      <AboutMePageContent />
+    </AuthRequiredRoute>
   )
 }

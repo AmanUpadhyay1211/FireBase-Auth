@@ -3,8 +3,9 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Navbar } from "@/components/ui/navbar"
+import { GuestOnlyRoute } from "@/components/auth/protected-route"
 
-export default function HomePage() {
+function HomePageContent() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-primary/5">
       <Navbar />
@@ -90,5 +91,13 @@ export default function HomePage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function HomePage() {
+  return (
+    <GuestOnlyRoute>
+      <HomePageContent />
+    </GuestOnlyRoute>
   )
 }

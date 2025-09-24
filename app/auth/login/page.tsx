@@ -1,5 +1,9 @@
+"use client"
+
 import { Suspense } from "react"
 import { LoginForm } from "@/components/auth/login-form"
+import { GuestOnlyRoute } from "@/components/auth/protected-route"
+import { AuthPageSkeleton } from "@/components/ui/page-skeleton"
 
 function LoginPageContent() {
   return (
@@ -11,14 +15,10 @@ function LoginPageContent() {
 
 export default function LoginPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen flex items-center justify-center p-4 gradient-mesh">
-          <div className="animate-pulse">Loading...</div>
-        </div>
-      }
-    >
-      <LoginPageContent />
-    </Suspense>
+    <GuestOnlyRoute fallback={<AuthPageSkeleton />}>
+      <Suspense fallback={<AuthPageSkeleton />}>
+        <LoginPageContent />
+      </Suspense>
+    </GuestOnlyRoute>
   )
 }

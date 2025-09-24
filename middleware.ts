@@ -6,9 +6,13 @@ export async function middleware(request: NextRequest) {
 
   // Protected routes that require authentication
   const protectedRoutes = ["/about-me", "/dashboard", "/profile"]
+  
+  // Guest-only routes (auth pages)
+  const guestOnlyRoutes = ["/auth/login", "/auth/signup", "/auth/reset-password"]
 
   // Check if the current path is protected
   const isProtectedRoute = protectedRoutes.some((route) => pathname.startsWith(route))
+  const isGuestOnlyRoute = guestOnlyRoutes.some((route) => pathname.startsWith(route))
 
   if (isProtectedRoute) {
     const sessionCookie = request.cookies.get("app_session")
@@ -28,6 +32,33 @@ export async function middleware(request: NextRequest) {
 
     // Allow the request to continue - actual JWT verification happens in server components/API routes
     return NextResponse.next()
+  }
+
+  // For guest-only routes, redirect to about-me if user is already authenticated
+  if (isGuestOnlyRoute) {
+    const sessionCookie = request.cookies.get("app_session")
+    
+    if (sessionCookie?.value) {
+      const cookieParts = sessionCookie.value.split(".")
+      if (cookieParts.length === 3) {
+        // User appears to be authenticated, redirect to about-me
+        return NextResponse.redirect(new URL("/about-me", request.url))
+      }
+    }
+  }
+
+  // For root path, redirect based on authentication status
+  if (pathname === "/") {
+    const sessionCookie = request.cookies.get("app_session")
+    
+    if (sessionCookie?.value) {
+      const cookieParts = sessionCookie.value.split(".")
+      if (cookieParts.length === 3) {
+        // User appears to be authenticated, redirect to about-me
+        return NextResponse.redirect(new URL("/about-me", request.url))
+      }
+    }
+    // If not authenticated, allow access to home page
   }
 
   // Allow the request to continue

@@ -170,6 +170,10 @@ npm start
 - Check connection string format
 - Ensure network access is allowed (if using Atlas)
 
+## Firebase Documentation
+
+This application heavily integrates with Firebase for authentication. For comprehensive Firebase integration details, see [FIREBASE_DOCUMENTATION.md](./FIREBASE_DOCUMENTATION.md).
+
 ## API Documentation
 
 This application includes a comprehensive REST API for authentication and user management. For detailed API documentation, see [API_DOCUMENTATION.md](./API_DOCUMENTATION.md).

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { motion } from "framer-motion"
 import { useForm } from "react-hook-form"
@@ -30,7 +30,7 @@ interface UserInfo {
   name?: string
 }
 
-export default function ConfirmResetPasswordPage() {
+function ConfirmResetPasswordContent() {
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
   const [validToken, setValidToken] = useState(false)
@@ -344,3 +344,20 @@ export default function ConfirmResetPasswordPage() {
     </div>
   )
 }
+
+export default function ConfirmResetPasswordPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center p-4 gradient-mesh">
+        <AuthCard title="Verifying Reset Link" description="Please wait while we verify your reset link">
+          <div className="flex items-center justify-center py-8">
+            <Loader2 className="w-8 h-8 animate-spin text-primary" />
+          </div>
+        </AuthCard>
+      </div>
+    }>
+      <ConfirmResetPasswordContent />
+    </Suspense>
+  )
+}
+

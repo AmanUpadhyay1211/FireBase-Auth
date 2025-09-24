@@ -314,3 +314,4 @@ curl -X PUT http://localhost:3000/api/auth/reset-password \
 6. **Update documentation** and user guides
 
 This custom password reset system provides a robust, secure, and user-friendly alternative to Firebase's default reset flow while maintaining full control over the user experience and security measures.
+

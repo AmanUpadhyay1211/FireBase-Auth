@@ -157,3 +157,4 @@ Consider adding email delivery monitoring:
 4. **Log email events**
 
 This setup ensures reliable password reset functionality with professional email delivery!
+

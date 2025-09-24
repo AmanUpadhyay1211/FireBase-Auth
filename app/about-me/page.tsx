@@ -90,7 +90,7 @@ function AboutMePageContent() {
               <CardContent>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
                   <motion.a
-                    href="https://github.com"
+                    href="https://github.com/AmanUpadhyay1211"
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
@@ -102,7 +102,7 @@ function AboutMePageContent() {
                   </motion.a>
 
                   <motion.a
-                    href="https://linkedin.com"
+                    href="https://www.linkedin.com/in/allthingsaman"
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
@@ -114,7 +114,7 @@ function AboutMePageContent() {
                   </motion.a>
 
                   <motion.a
-                    href="https://portfolio.example.com"
+                    href="https://portfolio-fawn-pi-29.vercel.app"
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
@@ -126,7 +126,7 @@ function AboutMePageContent() {
                   </motion.a>
 
                   <motion.a
-                    href="mailto:contact@example.com"
+                    href="mailto:amanupadhyay1211@gmail.com"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="flex items-center gap-3 p-3 md:p-4 rounded-lg border hover:bg-accent transition-colors"

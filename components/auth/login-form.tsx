@@ -30,7 +30,7 @@ export function LoginForm() {
   const searchParams = useSearchParams()
   const { toast } = useToast()
 
-  const redirectTo = searchParams.get("redirect") || "/about-me"
+  const redirectTo = searchParams.get("redirect") || "/dashboard"
 
   const {
     register,

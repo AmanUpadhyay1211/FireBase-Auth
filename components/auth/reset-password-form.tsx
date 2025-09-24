@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { AuthCard } from "@/components/ui/auth-card"
-import { resetPassword } from "@/lib/firebase/auth"
+// Remove Firebase reset password import - we'll use our custom API
 import { useToast } from "@/hooks/use-toast"
 import Link from "next/link"
 
@@ -37,16 +37,33 @@ export function ResetPasswordForm() {
   const onSubmit = async (data: ResetForm) => {
     setLoading(true)
     try {
-      await resetPassword(data.email)
-      setSent(true)
-      toast({
-        title: "Reset email sent!",
-        description: "Check your email for password reset instructions.",
+      const response = await fetch("/api/auth/reset-password", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: data.email }),
       })
+
+      const result = await response.json()
+
+      if (result.success) {
+        setSent(true)
+        toast({
+          title: "Reset email sent!",
+          description: "Check your email for password reset instructions.",
+        })
+      } else {
+        toast({
+          title: "Reset failed",
+          description: result.error || "Please try again.",
+          variant: "destructive",
+        })
+      }
     } catch (error: any) {
       toast({
         title: "Reset failed",
-        description: error.message || "Please try again.",
+        description: "An unexpected error occurred. Please try again.",
         variant: "destructive",
       })
     } finally {

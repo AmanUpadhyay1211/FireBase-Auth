@@ -1,21 +1,28 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Github, Linkedin, Globe, Mail, User } from "lucide-react"
+import { Github, Linkedin, Globe, Mail, User, Key, Settings } from "lucide-react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Button } from "@/components/ui/button"
 import { Navbar } from "@/components/ui/navbar"
 import { useAuth } from "@/hooks/use-auth"
 import { useRouter } from "next/navigation"
 import { AuthRequiredRoute } from "@/components/auth/protected-route"
+import { useToast } from "@/hooks/use-toast"
 
-function AboutMePageContent() {
+function DashboardPageContent() {
   const { user, signOut } = useAuth()
   const router = useRouter()
+  const { toast } = useToast()
 
   const handleSignOut = async () => {
     await signOut()
     router.push("/")
+  }
+
+  const handleResetPassword = () => {
+    router.push("/auth/reset-password")
   }
 
   return (
@@ -38,7 +45,7 @@ function AboutMePageContent() {
                   </Avatar>
                   <div className="text-center md:text-left space-y-2">
                     <h2 className="text-2xl md:text-3xl font-bold text-balance">
-                      You are authenticated, you can now know about me
+                      Welcome to Your Dashboard
                     </h2>
                     <p className="text-base md:text-lg text-muted-foreground text-pretty">
                       Welcome back, {user.displayName || user.email}! You're successfully signed in with{" "}
@@ -79,6 +86,45 @@ function AboutMePageContent() {
               </CardContent>
             </Card>
           </motion.div>
+
+          {/* Account Actions Card - Only for email/password users */}
+          {user.provider === "email" && (
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}>
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-lg md:text-xl flex items-center gap-2">
+                    <Settings className="w-5 h-5" />
+                    Account Settings
+                  </CardTitle>
+                  <CardDescription>Manage your account security and preferences</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-4">
+                    <div className="p-4 bg-blue-50 dark:bg-blue-950/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+                      <div className="flex items-start gap-3">
+                        <Key className="w-5 h-5 text-blue-600 dark:text-blue-400 mt-0.5" />
+                        <div className="space-y-2">
+                          <h4 className="font-medium text-blue-900 dark:text-blue-100">Password Security</h4>
+                          <p className="text-sm text-blue-700 dark:text-blue-300">
+                            Since you signed in with email and password, you can reset your password if needed.
+                          </p>
+                          <Button
+                            onClick={handleResetPassword}
+                            variant="outline"
+                            size="sm"
+                            className="mt-2 border-blue-300 text-blue-700 hover:bg-blue-100 dark:border-blue-700 dark:text-blue-300 dark:hover:bg-blue-900/20"
+                          >
+                            <Key className="w-4 h-4 mr-2" />
+                            Reset Password
+                          </Button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          )}
 
           {/* Professional Links Card */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
@@ -178,10 +224,10 @@ function AboutMePageContent() {
   )
 }
 
-export default function AboutMePage() {
+export default function DashboardPage() {
   return (
     <AuthRequiredRoute>
-      <AboutMePageContent />
+      <DashboardPageContent />
     </AuthRequiredRoute>
   )
 }

@@ -36,6 +36,13 @@ const envSchema = z.object({
 
   // App Config
   NEXT_PUBLIC_APP_URL: z.string().url("App URL must be a valid URL").default("http://localhost:3000"),
+
+  // Email Configuration
+  EMAIL_HOST: z.string().optional().default("smtp.gmail.com"),
+  EMAIL_PORT: z.string().optional().default("587"),
+  EMAIL_USER: z.string().min(1, "Email user is required"),
+  EMAIL_PASS: z.string().min(1, "Email password is required"),
+  EMAIL_FROM_NAME: z.string().optional().default("Firebase Auth App"),
 })
 
 export type Env = z.infer<typeof envSchema>
@@ -64,6 +71,11 @@ function getDefaultEnv(): Env {
     MONGODB_URI: process.env.MONGODB_URI || "mongodb://localhost:27017/firebase-auth-app",
     JWT_SECRET: process.env.JWT_SECRET || "development-jwt-secret-at-least-32-characters-long-for-build",
     NEXT_PUBLIC_APP_URL: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
+    EMAIL_HOST: process.env.EMAIL_HOST || "smtp.gmail.com",
+    EMAIL_PORT: process.env.EMAIL_PORT || "587",
+    EMAIL_USER: process.env.EMAIL_USER || "build-time-placeholder",
+    EMAIL_PASS: process.env.EMAIL_PASS || "build-time-placeholder",
+    EMAIL_FROM_NAME: process.env.EMAIL_FROM_NAME || "Firebase Auth App",
   } as Env
 }
 

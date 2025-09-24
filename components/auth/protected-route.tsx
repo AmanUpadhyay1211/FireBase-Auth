@@ -26,7 +26,7 @@ export function ProtectedRoute({
       if (requireAuth && !user) {
         router.push(redirectTo)
       } else if (!requireAuth && user) {
-        router.push("/about-me")
+        router.push("/dashboard")
       }
     }
   }, [user, loading, requireAuth, redirectTo, router])

@@ -303,7 +303,7 @@ const onSubmit = async (data: SignupForm) => {
   try {
     await signUpWithEmail(data.email, data.password)
     toast({ title: "Account created!", description: "Welcome to our app!" })
-    router.push("/about-me")
+    router.push("/dashboard")
   } catch (error) {
     toast({ title: "Error", description: "Failed to create account.", variant: "destructive" })
   } finally {
@@ -320,7 +320,7 @@ const handleGoogleSignIn = async () => {
   try {
     await signInWithGoogle()
     toast({ title: "Success", description: "Signed in with Google!" })
-    router.push("/about-me")
+    router.push("/dashboard")
   } catch (error) {
     toast({ title: "Error", description: "Google sign-in failed.", variant: "destructive" })
   }
@@ -333,7 +333,7 @@ const handleGithubSignIn = async () => {
   try {
     await signInWithGithub()
     toast({ title: "Success", description: "Signed in with GitHub!" })
-    router.push("/about-me")
+    router.push("/dashboard")
   } catch (error) {
     toast({ title: "Error", description: "GitHub sign-in failed.", variant: "destructive" })
   }

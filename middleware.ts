@@ -5,7 +5,7 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
   // Protected routes that require authentication
-  const protectedRoutes = ["/about-me", "/dashboard", "/profile"]
+  const protectedRoutes = ["/dashboard", "/profile"]
   
   // Guest-only routes (auth pages)
   const guestOnlyRoutes = ["/auth/login", "/auth/signup", "/auth/reset-password"]
@@ -34,15 +34,15 @@ export async function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
-  // For guest-only routes, redirect to about-me if user is already authenticated
+  // For guest-only routes, redirect to dashboard if user is already authenticated
   if (isGuestOnlyRoute) {
     const sessionCookie = request.cookies.get("app_session")
     
     if (sessionCookie?.value) {
       const cookieParts = sessionCookie.value.split(".")
       if (cookieParts.length === 3) {
-        // User appears to be authenticated, redirect to about-me
-        return NextResponse.redirect(new URL("/about-me", request.url))
+        // User appears to be authenticated, redirect to dashboard
+        return NextResponse.redirect(new URL("/dashboard", request.url))
       }
     }
   }
@@ -54,8 +54,8 @@ export async function middleware(request: NextRequest) {
     if (sessionCookie?.value) {
       const cookieParts = sessionCookie.value.split(".")
       if (cookieParts.length === 3) {
-        // User appears to be authenticated, redirect to about-me
-        return NextResponse.redirect(new URL("/about-me", request.url))
+        // User appears to be authenticated, redirect to dashboard
+        return NextResponse.redirect(new URL("/dashboard", request.url))
       }
     }
     // If not authenticated, allow access to home page

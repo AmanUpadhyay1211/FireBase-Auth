@@ -53,7 +53,7 @@ export function SignupForm() {
         title: "Account created!",
         description: "Please check your email to verify your account.",
       })
-      router.push("/about-me")
+      router.push("/dashboard")
     } catch (error: any) {
       toast({
         title: "Sign up failed",
@@ -72,7 +72,7 @@ export function SignupForm() {
         title: "Welcome!",
         description: "Your account has been created successfully.",
       })
-      router.push("/about-me")
+      router.push("/dashboard")
     } catch (error: any) {
       toast({
         title: "Google sign up failed",
@@ -89,7 +89,7 @@ export function SignupForm() {
         title: "Welcome!",
         description: "Your account has been created successfully.",
       })
-      router.push("/about-me")
+      router.push("/dashboard")
     } catch (error: any) {
       toast({
         title: "GitHub sign up failed",

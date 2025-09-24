@@ -234,7 +234,7 @@ interface SessionRecord {
 - [ ] Password reset email
 - [ ] Google OAuth sign-in
 - [ ] GitHub OAuth sign-in
-- [ ] Protected `/about-me` page access
+- [ ] Protected `/dashboard` page access
 - [ ] Session fallback when Firebase is down
 - [ ] Logout functionality
 - [ ] Dark/light mode toggle

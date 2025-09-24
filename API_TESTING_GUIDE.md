@@ -170,9 +170,9 @@ curl -X POST http://localhost:3000/api/auth/logout \
 
 ### Test Protected Routes
 
-1. **Access `/about-me` without auth** → Should redirect to `/auth/login`
-2. **Access `/about-me` with valid session** → Should show user data
-3. **Access `/` with valid session** → Should redirect to `/about-me`
+1. **Access `/dashboard` without auth** → Should redirect to `/auth/login`
+2. **Access `/dashboard` with valid session** → Should show user data
+3. **Access `/` with valid session** → Should redirect to `/dashboard`
 
 ---
 

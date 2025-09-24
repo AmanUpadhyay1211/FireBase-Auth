@@ -36,6 +36,10 @@ function getAdminApp(): App {
 
 export const adminAuth = getAuth(getAdminApp())
 
+export function getAdminAuth() {
+  return adminAuth
+}
+
 export async function verifyIdToken(idToken: string) {
   try {
     const decodedToken = await adminAuth.verifyIdToken(idToken)
@@ -43,5 +47,20 @@ export async function verifyIdToken(idToken: string) {
   } catch (error) {
     console.error("Firebase ID token verification failed:", error)
     return { success: false, error: error instanceof Error ? error.message : "Unknown error" }
+  }
+}
+
+export async function updateUserPassword(uid: string, newPassword: string) {
+  try {
+    await adminAuth.updateUser(uid, {
+      password: newPassword
+    })
+    return { success: true }
+  } catch (error) {
+    console.error("Failed to update user password:", error)
+    return { 
+      success: false, 
+      error: error instanceof Error ? error.message : "Failed to update password" 
+    }
   }
 }

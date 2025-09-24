@@ -48,7 +48,10 @@ export function LoginForm() {
         title: "Welcome back!",
         description: "You have been successfully signed in.",
       })
-      router.push(redirectTo)
+      // Wait a moment for the auth state to update and session to be created
+      setTimeout(() => {
+        router.push(redirectTo)
+      }, 500)
     } catch (error: any) {
       toast({
         title: "Sign in failed",
@@ -67,7 +70,10 @@ export function LoginForm() {
         title: "Welcome!",
         description: "You have been successfully signed in with Google.",
       })
-      router.push(redirectTo)
+      // Wait a moment for the auth state to update and session to be created
+      setTimeout(() => {
+        router.push(redirectTo)
+      }, 500)
     } catch (error: any) {
       toast({
         title: "Google sign in failed",
@@ -84,7 +90,10 @@ export function LoginForm() {
         title: "Welcome!",
         description: "You have been successfully signed in with GitHub.",
       })
-      router.push(redirectTo)
+      // Wait a moment for the auth state to update and session to be created
+      setTimeout(() => {
+        router.push(redirectTo)
+      }, 500)
     } catch (error: any) {
       toast({
         title: "GitHub sign in failed",

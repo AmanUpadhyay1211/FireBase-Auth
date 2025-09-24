@@ -170,6 +170,10 @@ npm start
 - Check connection string format
 - Ensure network access is allowed (if using Atlas)
 
+## Architecture Documentation
+
+This application uses a hybrid authentication architecture combining Firebase Auth with MongoDB and JWT sessions. For detailed architectural decisions and explanations, see [ARCHITECTURE_DOCUMENTATION.md](./ARCHITECTURE_DOCUMENTATION.md).
+
 ## Firebase Documentation
 
 This application heavily integrates with Firebase for authentication. For comprehensive Firebase integration details, see [FIREBASE_DOCUMENTATION.md](./FIREBASE_DOCUMENTATION.md).

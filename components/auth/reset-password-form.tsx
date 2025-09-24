@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { Mail, Loader2, ArrowLeft } from "lucide-react"
+import { Mail, Loader2, ArrowLeft, Home } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -121,6 +121,15 @@ export function ResetPasswordForm() {
   return (
     <AuthCard title="Reset your password" description="Enter your email address and we'll send you a reset link">
       <div className="space-y-4">
+        {/* Home Button */}
+        <div className="flex justify-center mb-4">
+          <Link href="/">
+            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
+              <Home className="w-4 h-4 mr-2" />
+              Back to Home
+            </Button>
+          </Link>
+        </div>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <motion.div
             initial={{ opacity: 0, x: -20 }}

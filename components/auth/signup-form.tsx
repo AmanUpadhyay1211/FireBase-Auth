@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { Eye, EyeOff, Mail, Lock, User, Loader2 } from "lucide-react"
+import { Eye, EyeOff, Mail, Lock, User, Loader2, Home } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -102,6 +102,15 @@ export function SignupForm() {
   return (
     <AuthCard title="Create your account" description="Get started with your free account">
       <div className="space-y-4">
+        {/* Home Button */}
+        <div className="flex justify-center mb-4">
+          <Link href="/">
+            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
+              <Home className="w-4 h-4 mr-2" />
+              Back to Home
+            </Button>
+          </Link>
+        </div>
         {/* OAuth Buttons */}
         <div className="space-y-3">
           <OAuthButton provider="google" onClick={handleGoogleSignIn} disabled={loading} />

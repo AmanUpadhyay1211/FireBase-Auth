@@ -15,9 +15,18 @@ export function Navbar() {
   const router = useRouter()
 
   const handleSignOut = async () => {
-    await signOut()
-    setIsOpen(false)
-    router.push("/")
+    try {
+      await signOut()
+      setIsOpen(false)
+      // Wait a moment for the session cookie to be cleared
+      setTimeout(() => {
+        router.push("/")
+      }, 100)
+    } catch (error) {
+      console.error("Sign out failed:", error)
+      // Still redirect even if logout fails
+      router.push("/")
+    }
   }
 
   return (

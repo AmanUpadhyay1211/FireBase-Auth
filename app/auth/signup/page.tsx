@@ -7,7 +7,7 @@ import { AuthPageSkeleton } from "@/components/ui/page-skeleton"
 
 function SignupPageContent() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 gradient-mesh">
+    <div className="h-screen flex items-center justify-center p-4 gradient-mesh overflow-hidden">
       <SignupForm />
     </div>
   )

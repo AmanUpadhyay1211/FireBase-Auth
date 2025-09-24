@@ -22,8 +22,17 @@ function DashboardPageContent() {
   }
 
   const handleSignOut = async () => {
-    await signOut()
-    router.push("/")
+    try {
+      await signOut()
+      // Wait a moment for the session cookie to be cleared
+      setTimeout(() => {
+        router.push("/")
+      }, 100)
+    } catch (error) {
+      console.error("Sign out failed:", error)
+      // Still redirect even if logout fails
+      router.push("/")
+    }
   }
 
   const handleResetPassword = () => {

@@ -170,6 +170,56 @@ npm start
 - Check connection string format
 - Ensure network access is allowed (if using Atlas)
 
+## API Documentation
+
+This application includes a comprehensive REST API for authentication and user management. For detailed API documentation, see [API_DOCUMENTATION.md](./API_DOCUMENTATION.md).
+
+### Quick API Overview
+
+**Authentication Endpoints:**
+- `POST /api/auth/session` - Create server session after Firebase auth
+- `POST /api/auth/refresh-session` - Refresh existing session
+- `POST /api/auth/logout` - Logout and clear session
+- `GET /api/user/me` - Get current user information
+
+**Key Features:**
+- 🔐 **Hybrid Authentication** - Firebase + MongoDB backup
+- 🍪 **HTTP-only Cookies** - Secure session management
+- 🔑 **JWT Tokens** - Server-side session validation
+- 🗄️ **MongoDB Integration** - User data persistence
+- 🛡️ **Security First** - Bcrypt hashing, CSRF protection
+
+### Authentication Flow
+
+1. **User signs in** with Firebase (email, Google, or GitHub)
+2. **Frontend gets** Firebase ID token
+3. **POST /api/auth/session** creates server-side JWT session
+4. **MongoDB stores** user data and hashed session
+5. **HTTP-only cookie** set for subsequent requests
+6. **GET /api/user/me** validates session and returns user data
+
+### Database Schema
+
+```typescript
+interface User {
+  uid: string                    // Firebase UID
+  email: string                  // User email
+  name?: string                  // Display name
+  provider: "email" | "google" | "github"
+  photoURL?: string              // Profile picture
+  sessions: SessionRecord[]      // Active sessions
+  lastSeen: Date                // Last activity
+}
+
+interface SessionRecord {
+  tokenHash: string             // Bcrypt hashed JWT
+  issuedAt: Date               // Creation time
+  expiresAt: Date              // Expiration time
+  userAgent?: string           // Browser info
+  ip?: string                  // Client IP
+}
+```
+
 ## Manual Testing Checklist
 
 - [ ] Email signup and login
@@ -181,3 +231,6 @@ npm start
 - [ ] Logout functionality
 - [ ] Dark/light mode toggle
 - [ ] Mobile responsiveness
+- [ ] API endpoint testing
+- [ ] Session management
+- [ ] Database user creation
